@@ -15,7 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     RouterModule,
     ToastrModule.forRoot({
-      positionClass: 'toastr-bottom-right',
+      positionClass: 'toast-bottom-right',
       preventDuplicates: true
     })
   ],
