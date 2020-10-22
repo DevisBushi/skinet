@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\app",
+    "\\client\\src\\app\\core",
+    "\\client\\src\\app\\core\\nav-bar",
+    "\\client\\src\\app\\shared",
+    "\\client\\src\\app\\shared\\components"
+  ],
+  "SelectedNode": "\\client\\src\\app\\core\\nav-bar\\nav-bar.component.html",
+  "PreviewInSolutionExplorer": false
+}
