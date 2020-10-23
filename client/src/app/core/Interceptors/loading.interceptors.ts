@@ -11,18 +11,17 @@ import { BusyService } from '../Services/busy.service';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
-  constructor(private busyService: BusyService) {}
+    constructor(private busyService: BusyService) {}
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    this.busyService.busy();
-    return next.handle(req).pipe(
-      delay(10),
-      finalize(() => {
-        this.busyService.idle();
-      })
-    );
-  }
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (!req.url.includes('emailexists')) {
+            this.busyService.busy();
+        }
+        return next.handle(req).pipe(
+            delay(100),
+            finalize(() => {
+                this.busyService.idle();
+            })
+        );
+    }
 }

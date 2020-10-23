@@ -11,11 +11,4 @@
       </button>
     </form>
   </div>
-  <div class="col-4">
-    <p>Form Status: {{ loginForm.status }}</p>
-    <p>Email Status: {{ loginForm.get("email").status }}</p>
-    <p>Email Status: {{ loginForm.get("email").touched }}</p>
-    <p>Email Status: {{ loginForm.get("email").dirty }}</p>
-    <pre>{{ loginForm.value | json }}</pre>
-  </div>
 </div>
