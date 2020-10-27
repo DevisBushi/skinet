@@ -37,7 +37,7 @@ namespace API
             });
             services.AddApplicationServices();
             services.AddIdentityServices(_config);
-            services.AddAutoMapper(typeof(MappingPorfiles));
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddSwaggerDocumentation();
             services.AddCors(opt =>
             {
