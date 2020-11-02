@@ -30,8 +30,7 @@ export class OrderDetailedComponent implements OnInit {
             '@OrderDetailed',
             `Order# ${order.id} - ${order.status}`
           );
-        },
-        (error) => {
+        }, error => {
           console.log(error);
         }
       );
