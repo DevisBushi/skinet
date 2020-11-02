@@ -8,10 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
   providers: [{provide: CdkStepper, useExisting: StepperComponent}]
 })
 export class StepperComponent extends CdkStepper implements OnInit {
-@Input() linearModeSelected: boolean;
+@Input() linearModelSelected: boolean;
 
   ngOnInit(): void {
-    this.linear = this.linearModeSelected;
+    this.linear = this.linearModelSelected;
   }
 
   onClick(index: number) {
