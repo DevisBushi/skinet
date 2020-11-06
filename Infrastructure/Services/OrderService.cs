@@ -39,7 +39,7 @@ namespace Infrastructure.Services
 
             var subtotal = items.Sum(item => item.Price * item.Quantity);
 
-            var spec = new OrderByPaymentIntentIdWithItemsSpecification(basket.PaymentIntendId);
+            var spec = new OrderByPaymentIntentIdSpecification(basket.PaymentIntendId);
             var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
             if (existingOrder != null)
             {
