@@ -45,12 +45,24 @@ namespace Infrastructure.Data
 
                 if (!context.Products.Any())
                 {
-                    var productsData = File.ReadAllText(path + @"/Data/SeedData/products.json");
-                    var products = JsonSerializer.Deserialize<List<Product>>(productsData);
+                    var productsData =
+                        File.ReadAllText(path + @"/Data/SeedData/products.json");
+
+                    var products = JsonSerializer.Deserialize<List<ProductSeedModel>>(productsData);
 
                     foreach (var item in products)
                     {
-                        context.Products.Add(item);
+                        var pictureFileName = item.PictureUrl.Substring(16);
+                        var product = new Product
+                        {
+                            Name = item.Name,
+                            Description = item.Description,
+                            Price = item.Price,
+                            ProductBrandId = item.ProductBrandId,
+                            ProductTypeId = item.ProductTypeId
+                        };
+                        product.AddPhoto(item.PictureUrl, pictureFileName);
+                        context.Products.Add(product);
                     }
 
                     await context.SaveChangesAsync();

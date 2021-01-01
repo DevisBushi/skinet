@@ -23,6 +23,7 @@ namespace API.Errors
             {
                 400 => "A Bad request, you have made",
                 401 => "Authorized you are NOT",
+                403 => "Forbidden from doing this, you are",
                 404 => "Resource found Not",
                 500 => "Errors the path to the Dark Side are",
                 _ => null

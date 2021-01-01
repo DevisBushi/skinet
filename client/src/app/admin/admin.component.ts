@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ShopParams} from '../shared/models/shopParams';
+import {IProduct} from '../shared/models/product';
 import {ShopService} from '../shop/shop.service';
 import {AdminService} from './admin.service';
-import {IProduct} from '../shared/models/product';
-import {ShopParams} from '../shared/models/shopParams';
 
 @Component({
   selector: 'app-admin',

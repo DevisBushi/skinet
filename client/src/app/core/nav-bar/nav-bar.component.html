@@ -2,20 +2,21 @@
   <img src="/assets/images/logo.png" style="max-height: 70px;" alt="logo" class="logo" routerLink="/">
   <nav class="my-2 my-md-0 mr-md-3 text-uppercase" style="font-size: larger;">
     <a class="p-2" [routerLink]="['/']" routerLinkActive="active"
-       [routerLinkActiveOptions]="{exact: true}">Home</a>
+      [routerLinkActiveOptions]="{exact: true}" >Home</a>
     <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
-    <a class="p-2" routerLink="/admin" routerLinkActive="active">Admin</a>
     <a class="p-2" routerLink="/test-error" routerLinkActive="active">Errors</a>
+    <a *ngIf="(isAdmin$ | async)" class="p-2" routerLink="/admin" routerLinkActive="active">Admin</a>
   </nav>
   <div class="d-flex align-items-center">
     <a routerLink="/basket" class="position-relative">
       <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
-      <div *ngIf="(basket$ | async) as basket" class="cart-no">{{basket.items.length}}</div>
+      <div *ngIf="(basket$ | async)" class="cart-no">{{(basket$ | async).items.length}}</div>
     </a>
     <ng-container *ngIf="(currentUser$ | async) === null">
       <a routerLink="/account/login" class="btn btn-outline-secondary mr-2">Login</a>
       <a routerLink="/account/register" class="btn btn-outline-secondary mr-3">Sign up</a>
     </ng-container>
+
     <ng-container *ngIf="currentUser$ | async">
       <div class="dropdown ml-3 mr-5" dropdown>
         <a class="dropdown-toggle" style="cursor: pointer" dropdownToggle>
@@ -34,7 +35,9 @@
           </a>
         </div>
       </div>
+
     </ng-container>
+
   </div>
 
 </div>

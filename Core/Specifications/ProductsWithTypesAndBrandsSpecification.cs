@@ -1,18 +1,13 @@
-﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Entities;
 
 namespace Core.Specifications
 {
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
-        public ProductsWithTypesAndBrandsSpecification(ProductSpecParams productParams)
-            : base(x =>
+        public ProductsWithTypesAndBrandsSpecification(ProductSpecParams productParams) 
+            : base(x => 
                 (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains(productParams.Search)) &&
                 (!productParams.BrandId.HasValue || x.ProductBrandId == productParams.BrandId) &&
                 (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId)
@@ -21,6 +16,7 @@ namespace Core.Specifications
             AddInclude(x => x.ProductType);
             AddInclude(x => x.ProductBrand);
             AddOrderBy(x => x.Name);
+            AddInclude(x => x.Photos);
             ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
             if (!string.IsNullOrEmpty(productParams.Sort))
@@ -34,17 +30,18 @@ namespace Core.Specifications
                         AddOrderByDescending(p => p.Price);
                         break;
                     default:
-                        AddOrderBy(p => p.Name);
+                        AddOrderBy(n => n.Name);
                         break;
-
                 }
             }
         }
 
-        public ProductsWithTypesAndBrandsSpecification(int id) : base(x => x.Id == id)
+        public ProductsWithTypesAndBrandsSpecification(int id) 
+            : base(x => x.Id == id)
         {
             AddInclude(x => x.ProductType);
             AddInclude(x => x.ProductBrand);
+            AddInclude(x => x.Photos);
         }
     }
 }

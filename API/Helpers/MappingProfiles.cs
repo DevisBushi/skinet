@@ -1,13 +1,7 @@
 ﻿using API.Dtos;
 using AutoMapper;
 using Core.Entities;
-using Core.Entities.Identity;
 using Core.Entities.OrderAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace API.Helpers
 {
@@ -34,6 +28,9 @@ namespace API.Helpers
                 .ForMember(d => d.PictureUrl, o => o.MapFrom(s => s.ItemOrdered.PictureUrl))
                 .ForMember(d => d.PictureUrl, o => o.MapFrom<OrderItemUrlResolver>());
             CreateMap<ProductCreateDto, Product>();
+            CreateMap<Photo, PhotoToReturnDto>()
+                .ForMember(d => d.PictureUrl, 
+                    o => o.MapFrom<PhotoUrlResolver>());
         }
     }
 }
