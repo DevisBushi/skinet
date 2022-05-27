@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PagingHeaderComponent } from './components/paging-header/paging-header.component';
@@ -12,7 +13,11 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { BasketSummaryComponent } from './components/basket-summary/basket-summary.component';
 import { RouterModule } from '@angular/router';
-import { CurrencyMaskModule } from 'ng2-currency-mask/lib/currency-mask.module';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { PhotoWidgetComponent } from './components/photo-widget/photo-widget.component';
+import {NgxDropzoneModule} from 'ngx-dropzone';
+import {ImageCropperModule} from 'ngx-image-cropper';
+import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask/lib/currency-mask.module';
     TextInputComponent,
     StepperComponent,
     BasketSummaryComponent,
-  ],
+    PhotoWidgetComponent],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
@@ -32,8 +37,11 @@ import { CurrencyMaskModule } from 'ng2-currency-mask/lib/currency-mask.module';
     FormsModule,
     CdkStepperModule,
     RouterModule,
-    // CurrencyMaskModule
-
+    CurrencyMaskModule,
+    NgxGalleryModule,
+    TabsModule.forRoot(),
+    NgxDropzoneModule,
+    ImageCropperModule
   ],
   exports: [
     PaginationModule,
@@ -48,7 +56,12 @@ import { CurrencyMaskModule } from 'ng2-currency-mask/lib/currency-mask.module';
     CdkStepperModule,
     StepperComponent,
     BasketSummaryComponent,
-    // CurrencyMaskModule
-  ],
+    CurrencyMaskModule,
+    NgxGalleryModule,
+    TabsModule,
+    NgxDropzoneModule,
+    ImageCropperModule,
+    PhotoWidgetComponent
+  ]
 })
-export class SharedModule {}
+export class SharedModule { }

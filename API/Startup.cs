@@ -34,17 +34,17 @@ namespace API
 
             ConfigureServices(services);
         }
-        public void ConfigureProductionServices(IServiceCollection services)
-        {
-            services.AddDbContext<StoreContext>(x =>
-            x.UseMySql(_config.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<AppIdentityDbContext>(x =>
-            {
-                x.UseMySql(_config.GetConnectionString("IdentityConnection"));
-            });
+        /*public void ConfigureProductionServices(IServiceCollection services)
+        //{
+        //    services.AddDbContext<StoreContext>(x =>
+        //    x.UseMySql(_config.GetConnectionString("DefaultConnection")));
+        //    services.AddDbContext<AppIdentityDbContext>(x =>
+        //    {
+        //        x.UseMySql(_config.GetConnectionString("IdentityConnection"));
+        //    });
 
-            ConfigureServices(services);
-        }
+        //    ConfigureServices(services);
+        }*/
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();

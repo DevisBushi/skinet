@@ -9,3 +9,5 @@ wwwroot
 .idea
 publish
 wwwroot
+_ReSharper.Caches
+.vs

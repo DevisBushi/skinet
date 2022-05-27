@@ -4,6 +4,7 @@ import { BasketService } from 'src/app/basket/basket.service';
 import { IProduct } from 'src/app/shared/models/product';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ShopService } from '../shop.service';
+import {NgxGalleryAction, NgxGalleryAnimation, NgxGalleryImage, NgxGalleryImageSize} from '@kolkov/ngx-gallery';
 
 @Component({
   selector: 'app-product-details',
@@ -13,6 +14,8 @@ import { ShopService } from '../shop.service';
 export class ProductDetailsComponent implements OnInit {
   product: IProduct;
   quantity = 1;
+  galleryOptions: NgxGalleryAction[];
+  galleryImages: NgxGalleryImage[];
   constructor(
     private shopService: ShopService,
     private activateRoute: ActivatedRoute,
@@ -24,6 +27,35 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.loadProduct();
+  }
+
+  initializeGallery() {
+    // @ts-ignore
+    this.galleryOptions = [
+      {
+        // @ts-ignore
+        width: '500px',
+        height: '600px',
+        imagePercent: 100,
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Fade,
+        imageSize: NgxGalleryImageSize.Contain,
+        thumbnailSize: NgxGalleryImageSize.Contain,
+        preview: false
+      }
+    ];
+    this.galleryImages = this.getImages();
+  }
+  getImages() {
+    const imageUrls = [];
+    for (const photo of this.product.photos) {
+      imageUrls.push({
+        small: photo.pictureUrl,
+        medium: photo.pictureUrl,
+        big: photo.pictureUrl,
+      });
+    }
+    return imageUrls;
   }
   addItemToBasket() {
     this.basketService.addItemToBasket(this.product, this.quantity);
@@ -46,6 +78,7 @@ export class ProductDetailsComponent implements OnInit {
         (product) => {
           this.product = product;
           this.bcService.set('@productDetails', product.name);
+          this.initializeGallery();
         },
         (error) => {
           console.log(error);
